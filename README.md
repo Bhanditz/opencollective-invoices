@@ -13,14 +13,8 @@ If you see a step below that could be improved (or is outdated), please update t
 
 ### Prerequisite
 
-1. Make sure you have Node.js version >= 10.
-
-- We recommend using [nvm](https://github.com/creationix/nvm): `nvm use`.
-
-2. Make sure you have [GraphicsMagick](http://www.graphicsmagick.org) installed.
-
-- On Debian/Ubuntu: `sudo apt-get install graphicsmagick`
-- On MacOS (with [Homebrew](https://brew.sh/)): `brew install graphicsmagick`
+Make sure you have Node.js version >= 10.
+We recommend using [nvm](https://github.com/creationix/nvm): `nvm use`.
 
 ### Install
 
@@ -52,8 +46,8 @@ npm run dev
 If you use this service through frontend, you're ready to go - frontend will pass
 your authorization token directly to the app.
 
-However if you're using the service directly you'll need to set an `Authorization`
-header to identify your requests.
+However if you're using the service directly you'll need to set the `Authorization`
+header with your token to identify your requests.
 
 ## Contributing
 
@@ -69,11 +63,23 @@ You can run the tests using `npm test`.
 
 To deploy to staging or production, you need to be a core member of the Open Collective team.
 
+### (Optional) Configure Slack token
+
+Setting a Slack token will post a message on `#engineering` with the changes you're
+about to deploy. It is not required, but you can activate it like this:
+
+1. Go to https://api.slack.com/custom-integrations/legacy-tokens
+2. Generate a token for the OpenCollective workspace
+3. Add this token to your `.env` file:
+
+```bash
+OC_SLACK_USER_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
 ### Staging (now)
 
 ```
-now -e API_KEY=09u624Pc9F47zoGLlkg1TBSbOl2ydSAq -e API_URL=https://api-staging.opencollective.com
-now alias invoices-staging.opencollective.com
+npm run deploy:staging
 ```
 
 - URL: https://invoices-staging.opencollective.com/
@@ -81,8 +87,7 @@ now alias invoices-staging.opencollective.com
 ### Production (now)
 
 ```
-now -e API_KEY=@opencollective_api_key -e API_URL=https://api.opencollective.com
-now alias invoices.opencollective.com
+npm run deploy:production
 ```
 
 - URL: https://invoices.opencollective.com/
