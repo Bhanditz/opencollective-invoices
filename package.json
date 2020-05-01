@@ -37,7 +37,8 @@
     "react-intl": "~2.7.2",
     "request": "~2.88.0",
     "sanitize-html": "~1.20.0",
-    "winston": "~3.1.0"
+    "winston": "~3.1.0",
+    "snyk": "^1.316.1"
   },
   "scripts": {
     "start": "NODE_ENV=production node build/server",
@@ -58,7 +59,9 @@
     "cypress": "TZ=UTC cypress run",
     "prettier": "prettier \"src/**/*.js\" \"test/**/*.js\" --write",
     "deploy:staging": "./scripts/pre-deploy.sh staging && now -e API_KEY=09u624Pc9F47zoGLlkg1TBSbOl2ydSAq -e API_URL=https://api-staging.opencollective.com -e WEBSITE_URL=https://staging.opencollective.com && now alias invoices-staging.opencollective.com",
-    "deploy:production": "./scripts/pre-deploy.sh production && now -e API_KEY=@opencollective_api_key -e API_URL=https://api.opencollective.com -e WEBSITE_URL=https://opencollective.com && now alias invoices.opencollective.com"
+    "deploy:production": "./scripts/pre-deploy.sh production && now -e API_KEY=@opencollective_api_key -e API_URL=https://api.opencollective.com -e WEBSITE_URL=https://opencollective.com && now alias invoices.opencollective.com",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -92,5 +95,6 @@
     "watch": [
       "src/server"
     ]
-  }
+  },
+  "snyk": true
 }
